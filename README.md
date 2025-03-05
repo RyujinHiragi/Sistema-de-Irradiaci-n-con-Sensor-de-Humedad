@@ -15,15 +15,18 @@ El objetivo de este sistema es automatizar el riego de un suelo mediante el moni
    Dispositivo de salida que proporciona una señal visual sobre el estado de la humedad del suelo. Se enciende o apaga según el valor de humedad detectado por el sensor.
 
 4. **Bomba de Agua:**  
-   Dispositivo de salida controlado por el Arduino que activa el flujo de agua al suelo cuando la humedad está por debajo del umbral deseado (50%).
+   Dispositivo de salida controlado por el Arduino que activa el flujo de agua al suelo cuando la humedad está por debajo del umbral deseado (50%). La bomba se activa mediante un relé conectado al Arduino.
 
-5. **Protoboard:**  
+5. **Relé:**  
+   Interruptor controlado por el Arduino que permite activar y desactivar la bomba de agua. El relé es necesario para manejar la corriente más alta requerida por la bomba, evitando dañar el microcontrolador.
+
+6. **Protoboard:**  
    Placa de pruebas donde se montan todos los componentes eléctricos del sistema para facilitar las conexiones y pruebas del circuito.
 
-6. **Resistencias:**  
+7. **Resistencias:**  
    Componentes pasivos utilizados para limitar la corriente y regular los voltajes en el circuito, evitando sobrecargas que puedan dañar los componentes.
 
-7. **Multímetro:**  
+8. **Multímetro:**  
    Herramienta utilizada para medir el voltaje, corriente y resistencia del sistema durante el proceso de configuración y monitoreo.
 
 ## Funcionamiento:
@@ -35,7 +38,7 @@ El objetivo de este sistema es automatizar el riego de un suelo mediante el moni
    El valor de humedad leído por el Arduino se compara con un umbral de 50%. Si la humedad es inferior al umbral, el sistema entra en modo de riego.
 
 3. **Activación de la Bomba de Agua:**
-   Si la humedad está por debajo del 50%, el Arduino activa una señal digital para encender la bomba de agua, utilizando un transistor o relé como interruptor para controlar el encendido de la bomba.
+   Si la humedad está por debajo del 50%, el Arduino activa una señal digital para encender la bomba de agua, utilizando un **relé** como interruptor para controlar el encendido de la bomba.
 
 4. **Indicador LED:**
    Si la humedad está por debajo del 50%, el Arduino enciende el LED como indicador visual de que el sistema detectó que el suelo necesita riego. Si la humedad es superior al 50%, el LED se apaga.
@@ -58,3 +61,4 @@ El objetivo de este sistema es automatizar el riego de un suelo mediante el moni
 5. Las resistencias regulan el flujo de corriente para proteger el circuito.
 
 Este sistema automatiza el riego del suelo, mejorando la eficiencia del proceso y reduciendo el consumo de agua, activándose solo cuando es necesario.
+
