@@ -1,0 +1,32 @@
+int sensorHumedad = A4; // Pin de lectura del sensor de humedad
+int lectura = 0;
+int humedad = 0;
+int motor = 6; // Pin al que está conectado el motor
+int alarma = 5; // Pin de la alarma (puede ser otro dispositivo si lo deseas)
+
+void setup() {
+  Serial.begin(9600);  // Inicia la comunicación serial
+  pinMode(motor, OUTPUT); // Configura el pin del motor como salida
+  pinMode(alarma, OUTPUT); // Configura el pin de la alarma como salida (si es necesario)
+}
+
+void loop() {
+  lectura = analogRead(sensorHumedad); // Lee el valor del sensor de humedad
+  humedad = map(lectura, 0, 880, 0, 100); // Convierte la lectura en un porcentaje de humedad
+
+  if (humedad < 50) {
+    digitalWrite(motor, HIGH); // Enciende el motor si la humedad es menor a 50%
+    digitalWrite(alarma, LOW); // Opcional: apagar alarma si la humedad es baja
+  } else {
+    digitalWrite(motor, LOW); // Apaga el motor si la humedad es mayor o igual a 50%
+    digitalWrite(alarma, HIGH); // Opcional: activar alarma si la humedad es alta
+  }
+  
+  Serial.print("Lectura ADC = ");
+  Serial.print(lectura);
+  Serial.print(". Humedad = ");
+  Serial.print(humedad);
+  Serial.println(" %");
+
+  delay(2000); // Espera 2 segundos antes de leer de nuevo
+}
